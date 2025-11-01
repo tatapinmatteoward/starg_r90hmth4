@@ -1,0 +1,75 @@
+---
+const navLinks = [
+  { name: 'Home', path: '/' },
+  { name: 'Stars', path: '/stars' },
+  { name: 'Red-Carpet', path: '/red-carpet' },
+  { name: 'Awards', path: '/awards' },
+  { name: 'Private-Life', path: '/private-life' }
+]
+---
+
+<nav class="bg-gradient-to-r from-[#610023] to-[#8a0033] shadow-xl">
+  <div class="container mx-auto px-4 py-3">
+    <div class="flex justify-between items-center">
+      <a href="/" class="text-2xl font-bold text-white hover:text-[#ff6f61] transition-colors duration-300">
+        StarGossip Hub
+      </a>
+      
+      <!-- Desktop Navigation -->
+      <div class="hidden md:flex gap-1">
+        {navLinks.map((link) => (
+          <a 
+            href={link.path}
+            class="px-4 py-2 text-white hover:bg-[#ff6f61] hover:text-[#610023] rounded-full transition-all duration-300 font-medium"
+          >
+            {link.name}
+          </a>
+        ))}
+      </div>
+      
+      <!-- Mobile menu button -->
+      <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
+        <i class="fas fa-bars text-2xl"></i>
+      </button>
+    </div>
+  </div>
+  
+  <!-- Mobile Navigation -->
+  <div id="mobile-menu" class="hidden md:hidden bg-[#8a0033]">
+    <div class="container mx-auto px-4 py-3 flex flex-col gap-2">
+      {navLinks.map((link) => (
+        <a 
+          href={link.path}
+          class="px-4 py-3 text-white hover:bg-[#ff6f61] hover:text-[#610023] rounded-lg transition-colors duration-300 font-medium"
+        >
+          {link.name}
+        </a>
+      ))}
+    </div>
+  </div>
+</nav>
+
+<script>
+  // Mobile menu toggle
+  document.addEventListener('DOMContentLoaded', () => {
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    mobileMenuButton.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+  });
+</script>
+
+<style>
+  @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
+  
+  .navbar-link {
+    transition: all 0.3s ease;
+  }
+  
+  .navbar-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  }
+</style>
